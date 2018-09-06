@@ -19,15 +19,13 @@ package pow
 import (
 	"strings"
 	"testing"
-
-	"github.com/dedis/student_18/dgcosi/code/onet/log"
 )
 
 func TestGetNonce(t *testing.T) {
 	data := []byte("lynn9388")
-	for difficulty := 1; difficulty < 5; difficulty++ {
+	for difficulty := 1; difficulty < 6; difficulty++ {
 		nonce := GetNonce(data, uint(difficulty))
-		log.Printf(hash(data, nonce))
+		t.Log(hash(data, nonce))
 		if !strings.HasPrefix(hash(data, nonce), strings.Repeat("0", difficulty)) {
 			t.Fail()
 		}
