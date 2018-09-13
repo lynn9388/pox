@@ -25,8 +25,8 @@ func TestGetNonce(t *testing.T) {
 	data := []byte("lynn9388")
 	for difficulty := 1; difficulty < 6; difficulty++ {
 		nonce := GetNonce(data, uint(difficulty))
-		t.Log(hash(data, nonce))
-		if !strings.HasPrefix(hash(data, nonce), strings.Repeat("0", difficulty)) {
+		t.Log(Hash(data, nonce))
+		if !strings.HasPrefix(Hash(data, nonce), strings.Repeat("0", difficulty)) {
 			t.Fail()
 		}
 	}

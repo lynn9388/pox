@@ -35,15 +35,13 @@ func GetNonce(data []byte, difficulty uint) []byte {
 
 // Fulfill checks if the nonce fulfils PoW request.
 func Fulfill(data []byte, nonce []byte, difficulty uint) bool {
-	hash := hash(data, nonce)
+	hash := Hash(data, nonce)
 	prefix := strings.Repeat("0", int(difficulty))
 	return strings.HasPrefix(hash, prefix)
 }
 
-// hash returns the SHA256 hash values with hexadecimal encoded string.
-func hash(data []byte, nonce []byte) string {
-	h := sha256.New()
-	h.Write(data)
-	h.Write(nonce)
-	return hex.EncodeToString(h.Sum(nil))
+// Hash returns the SHA256 Hash values in hexadecimal.
+func Hash(data []byte, nonce []byte) string {
+	hash := sha256.Sum256(append(data, nonce...))
+	return hex.EncodeToString(hash[:])
 }
