@@ -24,16 +24,16 @@ import (
 	"strings"
 )
 
-// GetNonce return a nonce fulfilled PoW request.
+// GetNonce returns a nonce fulfilled the requirement of PoW.
 func GetNonce(data []byte, difficulty uint) []byte {
-	bs := make([]byte, 32)
-	for nonce := uint32(0); !Fulfill(data, bs, difficulty); nonce++ {
-		binary.LittleEndian.PutUint32(bs, nonce)
+	nonce := make([]byte, 32)
+	for i := uint32(0); !Fulfill(data, nonce, difficulty); i++ {
+		binary.LittleEndian.PutUint32(nonce, i)
 	}
-	return bs
+	return nonce
 }
 
-// Fulfill checks if the nonce fulfils PoW request.
+// Fulfill checks if the nonce fulfils the requirement of PoW.
 func Fulfill(data []byte, nonce []byte, difficulty uint) bool {
 	hash := Hash(data, nonce)
 	prefix := strings.Repeat("0", int(difficulty))
