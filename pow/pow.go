@@ -26,8 +26,8 @@ import (
 
 // GetNonce returns a nonce fulfilled the requirement of PoW.
 func GetNonce(data []byte, difficulty uint) []byte {
-	nonce := make([]byte, 32)
-	for i := uint32(0); !Fulfill(data, nonce, difficulty); i++ {
+	nonce := make([]byte, 4)
+	for i := uint32(1); !Fulfill(data, nonce, difficulty); i++ {
 		binary.LittleEndian.PutUint32(nonce, i)
 	}
 	return nonce
