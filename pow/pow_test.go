@@ -17,18 +17,31 @@
 package pow
 
 import (
+	"encoding/hex"
 	"fmt"
-	"strings"
 	"testing"
 )
 
-func TestGetNonce(t *testing.T) {
-	data := []byte("lynn9388")
-	for difficulty := 1; difficulty < 6; difficulty++ {
-		nonce := GetNonce(data, uint(difficulty))
-		fmt.Println(Hash(data, nonce))
-		if !strings.HasPrefix(Hash(data, nonce), strings.Repeat("0", difficulty)) {
-			t.Fail()
+func TestPoW_Compute(t *testing.T) {
+	for i := 0; i < 20; i++ {
+		pow := NewPoW([]byte("lynn9388"), uint(i))
+		pow.Compute()
+
+		hash := hash(pow.Data, pow.Nonce)
+		fmt.Println(hex.EncodeToString(hash))
+	}
+}
+
+func TestPoW_Validate(t *testing.T) {
+	for i := 10; i < 20; i++ {
+		pow := NewPoW([]byte("lynn9388"), uint(i))
+		if pow.Validate() == true {
+			t.Error("failed to validate new generated PoW")
+		}
+
+		pow.Compute()
+		if pow.Validate() == false {
+			t.Error("failed to validate computed PoW")
 		}
 	}
 }
