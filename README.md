@@ -1,7 +1,7 @@
 # PoX
 
-[![Build Status](https://travis-ci.com/lynn9388/pox.svg?branch=master)](https://travis-ci.com/lynn9388/pox)
 [![Go Report Card](https://goreportcard.com/badge/github.com/lynn9388/pox)](https://goreportcard.com/report/github.com/lynn9388/pox)
+[![Build Status](https://travis-ci.com/lynn9388/pox.svg?branch=master)](https://travis-ci.com/lynn9388/pox)
 
 Some simple PoX implementations.
 
