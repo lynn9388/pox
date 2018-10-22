@@ -19,29 +19,29 @@ package pow
 import (
 	"encoding/hex"
 	"fmt"
-	"testing"
 )
 
-func TestPoW_Compute(t *testing.T) {
-	for i := 0; i < 20; i++ {
-		pow := NewPoW([]byte("lynn9388"), uint(i))
-		pow.Compute()
+func ExamplePoW_Compute() {
+	pow := NewPoW([]byte("lynn9388"), 10)
+	pow.Compute()
 
-		hash := hash(pow.Data, pow.Nonce)
-		fmt.Println(hex.EncodeToString(hash))
-	}
+	hash := hash(pow.Data, pow.Nonce)
+	fmt.Println(hex.EncodeToString(hash))
+	// Output:
+	// 002e7106c737ba4239194db04e477446201ef1dbe9386bdbd885981c762f951b
 }
 
-func TestPoW_Validate(t *testing.T) {
-	for i := 10; i < 20; i++ {
-		pow := NewPoW([]byte("lynn9388"), uint(i))
-		if pow.Validate() == true {
-			t.Error("failed to validate new generated PoW")
-		}
-
-		pow.Compute()
-		if pow.Validate() == false {
-			t.Error("failed to validate computed PoW")
-		}
+func ExamplePoW_Validate() {
+	pow := NewPoW([]byte("lynn9388"), 10)
+	if pow.Validate() == false {
+		fmt.Println("New generated PoW is not valid")
 	}
+
+	pow.Compute()
+	if pow.Validate() == true {
+		fmt.Println("Computed PoW is valid")
+	}
+	// Output:
+	// New generated PoW is not valid
+	// Computed PoW is valid
 }
