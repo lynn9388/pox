@@ -53,8 +53,8 @@ func (pow *PoW) Compute() {
 	}
 }
 
-// Validate checks if the PoW fulfils the requirement of Proof-of-Work.
-func (pow *PoW) Validate() bool {
+// IsValid checks if the PoW fulfils the requirement of Proof-of-Work.
+func (pow *PoW) IsValid() bool {
 	var hashInt big.Int
 	hashInt.SetBytes(hash(pow.Data, pow.Nonce))
 	target := newTarget(pow.TargetBits)

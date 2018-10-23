@@ -31,17 +31,17 @@ func ExamplePoW_Compute() {
 	// 002e7106c737ba4239194db04e477446201ef1dbe9386bdbd885981c762f951b
 }
 
-func ExamplePoW_Validate() {
+func ExamplePoW_IsValid() {
 	pow := NewPoW([]byte("lynn9388"), 10)
-	if pow.Validate() == false {
-		fmt.Println("New generated PoW is not valid")
+	if !pow.IsValid() {
+		fmt.Println("New generated PoW is not valid.")
 	}
 
 	pow.Compute()
-	if pow.Validate() == true {
-		fmt.Println("Computed PoW is valid")
+	if pow.IsValid() {
+		fmt.Println("Computed PoW is valid.")
 	}
 	// Output:
-	// New generated PoW is not valid
-	// Computed PoW is valid
+	// New generated PoW is not valid.
+	// Computed PoW is valid.
 }

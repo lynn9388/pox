@@ -17,7 +17,7 @@ targetBits := uint(10)
 
 pow := NewPoW(data, targetBits)
 pow.Compute()
-if pow.Validate() == false {
-	fmt.Println("failed to validate PoW")
+if !pow.IsValid() {
+	fmt.Println("PoW is not valid.")
 }
 ```
