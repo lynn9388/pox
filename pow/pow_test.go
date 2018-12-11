@@ -22,7 +22,7 @@ import (
 )
 
 func ExamplePoW_Compute() {
-	pow := NewPoW([]byte("lynn9388"), 10)
+	pow := NewPoW([]byte("lynn9388"), 10, 0)
 	pow.Compute()
 
 	hash := hash(pow.Data, pow.Nonce)
@@ -32,7 +32,7 @@ func ExamplePoW_Compute() {
 }
 
 func ExamplePoW_IsValid() {
-	pow := NewPoW([]byte("lynn9388"), 10)
+	pow := NewPoW([]byte("lynn9388"), 10, 0)
 	if !pow.IsValid() {
 		fmt.Println("New generated PoW is not valid.")
 	}

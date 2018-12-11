@@ -32,8 +32,8 @@ type PoW struct {
 }
 
 // NewPoW returns a not computed PoW.
-func NewPoW(data []byte, targetBits uint) *PoW {
-	return &PoW{Data: data, TargetBits: targetBits, Nonce: 0}
+func NewPoW(data []byte, targetBits uint, nonce int64) *PoW {
+	return &PoW{Data: data, TargetBits: targetBits, Nonce: nonce}
 }
 
 // Compute performs a Proof-of-Work.

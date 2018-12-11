@@ -12,10 +12,7 @@ Some simple PoX implementations.
 ### Example
 
 ```go
-data := []byte("lynn9388")
-targetBits := uint(10)
-
-pow := NewPoW(data, targetBits)
+pow := NewPoW([]byte("lynn9388"), 10, 0)
 pow.Compute()
 if !pow.IsValid() {
 	fmt.Println("PoW is not valid.")
