@@ -44,7 +44,7 @@ func (pow *PoW) Compute() {
 
 	for nonce <= maxNonce {
 		var hashInt big.Int
-		hashInt.SetBytes(hash(pow.Data, nonce))
+		hashInt.SetBytes(Hash(pow.Data, nonce))
 		if hashInt.Cmp(target) == -1 {
 			pow.Nonce = nonce
 			break
@@ -56,7 +56,7 @@ func (pow *PoW) Compute() {
 // IsValid checks if the PoW fulfils the requirement of Proof-of-Work.
 func (pow *PoW) IsValid() bool {
 	var hashInt big.Int
-	hashInt.SetBytes(hash(pow.Data, pow.Nonce))
+	hashInt.SetBytes(Hash(pow.Data, pow.Nonce))
 	target := newTarget(pow.TargetBits)
 	return hashInt.Cmp(target) == -1
 }
@@ -68,8 +68,8 @@ func newTarget(targetBits uint) *big.Int {
 	return target
 }
 
-// hash returns the hash value of data|nonce.
-func hash(data []byte, nonce int64) []byte {
+// Hash returns the hash value of data|nonce.
+func Hash(data []byte, nonce int64) []byte {
 	binaryNonce := make([]byte, 8)
 	binary.BigEndian.PutUint64(binaryNonce, uint64(nonce))
 	hash := sha256.Sum256(append(data, binaryNonce...))

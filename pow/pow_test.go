@@ -25,7 +25,7 @@ func ExamplePoW_Compute() {
 	pow := NewPoW([]byte("lynn9388"), 10, 0)
 	pow.Compute()
 
-	hash := hash(pow.Data, pow.Nonce)
+	hash := Hash(pow.Data, pow.Nonce)
 	fmt.Println(hex.EncodeToString(hash))
 	// Output:
 	// 002e7106c737ba4239194db04e477446201ef1dbe9386bdbd885981c762f951b
