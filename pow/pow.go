@@ -68,7 +68,7 @@ func newTarget(targetBits uint) *big.Int {
 	return target
 }
 
-// Hash returns the hash value of data|nonce.
+// Hash returns the hash value of data||nonce.
 func Hash(data []byte, nonce int64) []byte {
 	binaryNonce := make([]byte, 8)
 	binary.BigEndian.PutUint64(binaryNonce, uint64(nonce))
